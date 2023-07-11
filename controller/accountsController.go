@@ -83,101 +83,6 @@ func CreateAccount() {
 	}
 }
 
-// func ShowAllAccount() {
-// 	fmt.Println("---------------------------------------")
-// 	fmt.Println("All Accounts")
-// 	fmt.Println("---------------------------------------")
-//
-// 	// Retrieve all accounts from MongoDB
-// 	cursor, err := collection.Find(context.Background(), bson.D{})
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	defer cursor.Close(context.Background())
-//
-// 	fmt.Println("--------------------------------------------------------------")
-// 	fmt.Println("Name           | Account Number      |     Phone     | Balance|")
-// 	fmt.Println("--------------------------------------------------------------")
-// 	for cursor.Next(context.Background()) {
-// 		var account model.Account
-//
-// 		if err := cursor.Decode(&account); err != nil {
-// 			log.Fatal(err)
-// 		}
-// 		fmt.Printf(
-// 			"%v              | %v                   | %v            | %v    |\n",
-// 			account.Name,
-// 			account.AccountNo,
-// 			account.Phone,
-// 			account.Balance,
-// 		)
-// 		// fmt.Println("Name           : ", account.Name)
-// 		// fmt.Println("Account Number : ", account.AccountNo)
-// 		// fmt.Println("Phone          : ", account.Phone)
-// 		// fmt.Println("Balance        : $", account.Balance)
-// 		// fmt.Println("---------------------------------------")
-// 		// fmt.Println()
-// 	}
-//
-// 	if err := cursor.Err(); err != nil {
-// 		log.Fatal(err)
-// 	}
-//
-// 	fmt.Println("Press 0 And Hit Enter to return")
-// 	var choice int
-// 	fmt.Scan(&choice)
-// 	if choice != 0 {
-// 		fmt.Println("Invalid Options")
-// 	}
-// }
-
-// func ShowAllAccount() {
-//
-//		// Retrieve all accounts from MongoDB
-//		cursor, err := collection.Find(context.Background(), bson.D{})
-//		if err != nil {
-//			log.Fatal(err)
-//		}
-//		defer cursor.Close(context.Background())
-//
-//		// Create tab writer with custom formatting
-//		w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', tabwriter.AlignRight|tabwriter.Debug)
-//		fmt.Fprintln(w, "--------------------------------------------------------------")
-//		fmt.Fprintln(w, "Name\tAccount Number\tPhone\tBalance")
-//		fmt.Fprintln(w, "--------------------------------------------------------------")
-//
-//		for cursor.Next(context.Background()) {
-//			var account model.Account
-//
-//			if err := cursor.Decode(&account); err != nil {
-//				log.Fatal(err)
-//			}
-//
-//			// Format and write account details to the tab writer
-//			fmt.Fprintf(
-//				w,
-//				"%s\t%d\t%d\t%.2f\n",
-//				account.Name,
-//				account.AccountNo,
-//				account.Phone,
-//				account.Balance,
-//			)
-//		}
-//
-//		if err := cursor.Err(); err != nil {
-//			log.Fatal(err)
-//		}
-//
-//		// Flush the tab writer to output the formatted table
-//		w.Flush()
-//
-//		fmt.Println("Press 0 And Hit Enter to return")
-//		var choice int
-//		fmt.Scan(&choice)
-//		if choice != 0 {
-//			fmt.Println("Invalid Options")
-//		}
-//	}
 func ShowAllAccount() {
 	// Retrieve all accounts from MongoDB
 	cursor, err := collection.Find(context.Background(), bson.D{})
@@ -189,6 +94,10 @@ func ShowAllAccount() {
 	// Create tab writer with custom formatting
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', tabwriter.AlignRight|tabwriter.Debug)
 	fmt.Fprintln(w, " Name\t Account Number\t Phone\t Balance")
+	fmt.Fprintln(
+		w,
+		"--------------------\t--------------------\t--------------------\t--------------------",
+	)
 
 	for cursor.Next(context.Background()) {
 		var account model.Account
