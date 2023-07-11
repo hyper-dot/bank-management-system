@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func searchAccount() {
+func SearchAccount() {
 	for {
 		utils.ClearScreen()
 		fmt.Println("---------------------------------------")

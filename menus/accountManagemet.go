@@ -25,7 +25,7 @@ func ShowAccManagemntOpts() {
 		case 2:
 			accountController.ShowAllAccount()
 		case 3:
-			accountController.SearchAccount()
+			SearchAccount()
 		case 0:
 			return
 		default:
