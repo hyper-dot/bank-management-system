@@ -2,37 +2,15 @@ package controller
 
 import (
 	"bank/model"
+	"bank/utils"
 	"context"
 	"fmt"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"os"
 	"text/tabwriter"
+
+	"go.mongodb.org/mongo-driver/bson"
 )
-
-func createConnection() *mongo.Client {
-	ctx := context.TODO()
-	URI := "mongodb://127.0.0.1:27017"
-	clientOptions := options.Client().ApplyURI(URI)
-	client, err := mongo.Connect(ctx, clientOptions)
-	if err != nil {
-		log.Fatal(err)
-	}
-	err = client.Ping(ctx, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return client
-}
-func createAccountCollection(client *mongo.Client) *mongo.Collection {
-	collection := client.Database("Bank").Collection("accounts")
-	return collection
-}
-
-var client = createConnection()
-var collection = createAccountCollection(client)
 
 func CreateAccount() {
 	var account model.Account
@@ -64,28 +42,19 @@ func CreateAccount() {
 	fmt.Scan(&account.Balance)
 
 	//Mongodb specifics
-	_, err := collection.InsertOne(context.Background(), account)
+	_, err := utils.Collection.InsertOne(context.Background(), account)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// Message
 	fmt.Println("Account Created Succesfully !!")
-	fmt.Println("Insert 0 and Hit Enter to continue !")
-	var choice int
-	fmt.Scan(&choice)
-	if choice == 0 {
-		return
-	}
-	for choice != 0 {
-		fmt.Println("Invalid Option!!")
-		fmt.Scan(&choice)
-	}
+	utils.Return()
 }
 
 func ShowAllAccount() {
 	// Retrieve all accounts from MongoDB
-	cursor, err := collection.Find(context.Background(), bson.D{})
+	cursor, err := utils.Collection.Find(context.Background(), bson.D{})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -124,14 +93,5 @@ func ShowAllAccount() {
 	// Flush the tab writer to output the formatted table
 	w.Flush()
 
-	fmt.Println("Press 0 And Hit Enter to return")
-	var choice int
-	fmt.Scan(&choice)
-	if choice != 0 {
-		fmt.Println("Invalid Options")
-	}
-}
-
-func SearchAccount() {
-
+	utils.Return()
 }
