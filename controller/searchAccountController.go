@@ -5,8 +5,8 @@ import (
 	"bank/utils"
 	"context"
 	"fmt"
-
 	"go.mongodb.org/mongo-driver/bson"
+	"log"
 )
 
 // Account Management Handler
@@ -35,8 +35,54 @@ func SearchByPhone() {
 }
 
 func SearchByName() {
-	fmt.Print("Enter Full Name: ")
-	return
+	// Retrieve all accounts from MongoDB
+	var firstName string
+	var lastName string
+
+	// Asks User for name
+	fmt.Printf("Enter the Account Name: ")
+	fmt.Scan(&firstName, &lastName)
+
+	fullName := firstName + " " + lastName
+	// To track whether account is found or not
+	var found bool
+
+	// Search Filter
+	filter := bson.D{{Key: "name", Value: fullName}}
+	cursor, err := utils.Collection.Find(context.Background(), filter)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer cursor.Close(context.Background())
+
+	for cursor.Next(context.Background()) {
+		var account model.Account
+
+		if err := cursor.Decode(&account); err != nil {
+			log.Fatal(err)
+		}
+
+		// Output
+		fmt.Println("--------------------------")
+		fmt.Println("Name      :", account.Name)
+		fmt.Println("Accoun No :", account.AccountNo)
+		fmt.Println("Phone No  :", account.Phone)
+		fmt.Println("Balance   :", account.Balance)
+
+		found = true
+	}
+	if found {
+		fmt.Println("--------------------------")
+	}
+
+	if err := cursor.Err(); err != nil {
+		log.Fatal(err)
+	}
+	if !found {
+		fmt.Println("No account found !!")
+	}
+	// Prompts user to press 0 for return
+	utils.Return()
 }
 
 func SearchAccountbyAccNo() {

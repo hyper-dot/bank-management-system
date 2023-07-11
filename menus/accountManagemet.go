@@ -12,7 +12,7 @@ func ShowAccManagemntOpts() {
 		fmt.Println("---------------------------------------")
 		fmt.Println("1. Create Account")
 		fmt.Println("2. Show All Accounts")
-		fmt.Println("3. Search Account")
+		fmt.Println("3. Show Account Details")
 		fmt.Println("0. Return")
 		fmt.Println("---------------------------------------")
 		fmt.Println()
