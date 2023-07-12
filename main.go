@@ -7,7 +7,7 @@ import (
 
 func main() {
 	for {
-		menus.DisplayMainMenu()
+		utils.DisplayMenu(menus.MainMenu)
 		choice := utils.GetInput()
 		menus.ProcessMainMenuChoice(choice)
 	}

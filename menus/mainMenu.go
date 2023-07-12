@@ -1,23 +1,17 @@
 package menus
 
 import (
-	"bank/utils"
 	"fmt"
 	"os"
 )
 
-func DisplayMainMenu() {
-	utils.ClearScreen()
-	fmt.Println("---------------------------------------")
-	fmt.Println("1. Account Management")
-	fmt.Println("2. Deposits and Withdrawals")
-	fmt.Println("3. Payment Transfers")
-	fmt.Println("4. Loan Processing")
-	fmt.Println("5. Clearing and Settlement")
-	fmt.Println("0. Exit")
-	fmt.Println("---------------------------------------")
-	fmt.Println()
-	fmt.Print("Plese select your an option: ")
+var MainMenu = []string{
+	"1. Account Management",
+	"2. Deposits and Withdrawals",
+	"3. Payment Transfers",
+	"4. Loan Processing",
+	"5. Clearing and Settlement",
+	"0. Exit",
 }
 
 func ProcessMainMenuChoice(choice int) {

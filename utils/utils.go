@@ -33,3 +33,21 @@ func Return() {
 		fmt.Scan(&choice)
 	}
 }
+
+func Divider() {
+	fmt.Println("---------------------------------------")
+}
+
+func DisplayMenu(menus []string) {
+	ClearScreen()
+	Divider()
+	for _, item := range menus {
+		fmt.Println(item)
+	}
+	Divider()
+	fmt.Print("Plese select your an option: ")
+}
+
+func getChoice() {
+
+}
