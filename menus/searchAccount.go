@@ -6,27 +6,25 @@ import (
 	"fmt"
 )
 
+var searchAccountMenu = []string{
+	"1. Search By Phone Number",
+	"2. Search By Account Number",
+	"3. Search By Name",
+	"0. Return",
+}
+
 func SearchAccount() {
 	for {
-		utils.ClearScreen()
-		fmt.Println("---------------------------------------")
-		fmt.Println("1. Search By Phone")
-		fmt.Println("2. Search by Account Number")
-		fmt.Println("3. Search by Name")
-		fmt.Println("0. Return")
-		fmt.Println("---------------------------------------")
-		fmt.Println()
-		fmt.Print("Plese select your an option: ")
-
+		utils.DisplayMenu(searchAccountMenu)
 		choice := utils.GetInput()
 		switch choice {
-		case 1:
+		case "1":
 			controller.SearchByPhone()
-		case 2:
+		case "2":
 			controller.SearchAccountbyAccNo()
-		case 3:
+		case "3":
 			controller.SearchByName()
-		case 0:
+		case "0":
 			return
 		default:
 			fmt.Println("invalid Options")

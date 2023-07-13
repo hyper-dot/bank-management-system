@@ -6,8 +6,8 @@ import (
 	"os/exec"
 )
 
-func GetInput() int {
-	var choice int
+func GetInput() string {
+	var choice string
 	fmt.Scan(&choice)
 	return choice
 }

@@ -14,19 +14,18 @@ var MainMenu = []string{
 	"0. Exit",
 }
 
-func ProcessMainMenuChoice(choice int) {
+func ProcessMainMenuChoice(choice string) {
 	switch choice {
-	case 1:
+	case "1":
 		ShowAccManagemntOpts()
-	case 2:
-		fmt.Println("You chose 2 !!")
-	case 3:
+	case "2":
+	case "3":
 		fmt.Println("You chose 3 !!")
-	case 4:
+	case "4":
 		fmt.Println("You chose 4 !!")
-	case 5:
+	case "5":
 		fmt.Println("You chose 5 !!")
-	case 0:
+	case "0":
 		os.Exit(0)
 	default:
 		fmt.Println("Invalid Options")
