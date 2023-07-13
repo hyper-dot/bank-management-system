@@ -86,6 +86,24 @@ func SearchByName() {
 }
 
 func SearchAccountbyAccNo() {
+	var account model.Account
 	fmt.Print("Enter Account Number: ")
-	return
+	var acNo int
+	fmt.Scan(&acNo)
+	ctx := context.Background()
+	filter := bson.D{{Key: "accountNo", Value: acNo}}
+	err := utils.Collection.FindOne(ctx, filter).Decode(&account)
+	if err != nil {
+		fmt.Println("Not found !!")
+	}
+	if err == nil {
+		fmt.Println("---------------------------------------")
+		fmt.Printf("Name        : %v\n", account.Name)
+		fmt.Printf("Account No. : %v\n", account.AccountNo)
+		fmt.Printf("Phone       : %v\n", account.Phone)
+		fmt.Printf("Balance     : %v\n", account.Balance)
+		fmt.Println("---------------------------------------")
+	}
+
+	utils.Return()
 }
