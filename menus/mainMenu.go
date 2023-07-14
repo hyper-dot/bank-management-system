@@ -19,6 +19,7 @@ func ProcessMainMenuChoice(choice string) {
 	case "1":
 		ShowAccManagemntOpts()
 	case "2":
+		ShowDepositeAndWithdrawlMenu()
 	case "3":
 		fmt.Println("You chose 3 !!")
 	case "4":

@@ -95,3 +95,23 @@ func ShowAllAccount() {
 
 	utils.Return()
 }
+
+func DeleteAccount() {
+	// Take Account Number
+	var accountNo int
+	fmt.Print("Enter Account Number: ")
+	fmt.Scan(&accountNo)
+
+	ctx := context.TODO()
+	filter := bson.D{{Key: "accountNo", Value: accountNo}}
+	deleteResult, err := utils.Collection.DeleteOne(ctx, filter)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if deleteResult.DeletedCount > 1 {
+		fmt.Printf("Found %v Account(s) and Deleted Succesfully!! \n", deleteResult.DeletedCount)
+	} else {
+		fmt.Println("No accounts found !!")
+	}
+	utils.Return()
+}

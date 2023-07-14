@@ -10,6 +10,7 @@ var AccountManagementMenu = []string{
 	"1. Create Account",
 	"2. Show All Accounts",
 	"3. Show Account Details",
+	"4. Delete Account",
 	"0. Return",
 }
 
@@ -24,6 +25,8 @@ func ShowAccManagemntOpts() {
 			controller.ShowAllAccount()
 		case "3":
 			SearchAccount()
+		case "4":
+			controller.DeleteAccount()
 		case "0":
 			return
 		default:
