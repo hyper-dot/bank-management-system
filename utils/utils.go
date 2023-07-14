@@ -19,18 +19,16 @@ func ClearScreen() {
 	cmd.Run()
 }
 
-// Returns to the Main Menu
+// Returns to Menu
 func Return() {
-	fmt.Println("Please Press 0 and Hit Enter to Return:")
+	fmt.Printf("Please Press 0 and Hit Enter to Return: ")
 	var choice string
 	fmt.Scan(&choice)
 	if choice == "0" {
 		return
-	}
-	for choice != "0" {
-		fmt.Println("Invalid Option !!")
-		fmt.Println("Please Press 0 and Hit Enter to Return:")
-		fmt.Scan(&choice)
+	} else {
+		fmt.Printf("Invalid Input !! Please Press 0 and Hit Enter to Return: ")
+		Return()
 	}
 }
 
@@ -46,8 +44,4 @@ func DisplayMenu(menus []string) {
 	}
 	Divider()
 	fmt.Print("Plese select your an option: ")
-}
-
-func getChoice() {
-
 }

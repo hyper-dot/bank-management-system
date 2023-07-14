@@ -21,9 +21,8 @@ func ShowDepositeAndWithdrawlMenu() {
 		case "1":
 			controller.Deposit()
 		case "2":
-			controller.ShowAllAccount()
 		case "3":
-			SearchAccount()
+			controller.TransferMoney()
 		case "0":
 			return
 		default:

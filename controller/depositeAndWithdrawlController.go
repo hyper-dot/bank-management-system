@@ -5,9 +5,8 @@ import (
 	"bank/utils"
 	"context"
 	"fmt"
-	"log"
-
 	"go.mongodb.org/mongo-driver/bson"
+	"log"
 )
 
 func Deposit() {
@@ -41,4 +40,60 @@ func Deposit() {
 	)
 	fmt.Println("Amount Added Successfully !!")
 	utils.Return()
+}
+
+func TransferMoney() {
+	//Get account numbers
+	var receiverAccNo int
+	var senderAccNo int
+	var amount float64
+	fmt.Printf("Receiver Account No : ")
+	fmt.Scan(&receiverAccNo)
+	fmt.Printf("Sender Account No :")
+	fmt.Scan(&senderAccNo)
+	fmt.Printf("Amount :")
+	fmt.Scan(&amount)
+
+	//Get details of the account number
+	var receiver model.Account
+	var sender model.Account
+	ctx := context.Background()
+	receiverFilter := bson.D{{Key: "accountNo", Value: receiverAccNo}}
+	senderFilter := bson.D{{Key: "accountNo", Value: senderAccNo}}
+	if err := utils.Collection.FindOne(ctx, receiverFilter).Decode(&receiver); err != nil {
+		fmt.Println("receiver's account not found !!")
+		return
+	}
+	if err := utils.Collection.FindOne(ctx, senderFilter).Decode(&sender); err != nil {
+		fmt.Println("sender's account not found !!")
+		return
+	}
+
+	// Checks if sender has enough balance
+	if sender.Balance < amount {
+		fmt.Println("sender don't have enough balance !!")
+		return
+	}
+
+	// Add Subtract the amounts
+	senderNewAmount := sender.Balance - amount
+	receiverNewAmount := receiver.Balance + amount
+
+	// Update the values in database
+	updateReceiver := bson.D{
+		{Key: "$set", Value: bson.D{{Key: "balance", Value: receiverNewAmount}}},
+	}
+	updateSender := bson.D{{Key: "$set", Value: bson.D{{Key: "balance", Value: senderNewAmount}}}}
+
+	if _, err := utils.Collection.UpdateOne(ctx, receiverFilter, updateReceiver); err != nil {
+		utils.Return()
+	}
+	if _, err := utils.Collection.UpdateOne(ctx, senderFilter, updateSender); err != nil {
+		fmt.Println("sender's account updation failed!!")
+		return
+	}
+
+	// Print success message and return to menu
+	fmt.Println("receiver's account updation failed!!")
+	return
 }
