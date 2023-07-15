@@ -10,3 +10,7 @@ CLI bank management in golang
 
 - Bug reason found : it was due to return function invoked return and again and it actually returned to the main
   menu
+
+# Architecture
+
+![Alt Text](./image.png)
