@@ -49,10 +49,10 @@ func CreateAccount() {
 
 	// Message
 	fmt.Println("Account Created Succesfully !!")
-	utils.Return()
 }
 
 func ShowAllAccount() {
+
 	// Retrieve all accounts from MongoDB
 	cursor, err := utils.Collection.Find(context.Background(), bson.D{})
 	if err != nil {
@@ -92,8 +92,6 @@ func ShowAllAccount() {
 
 	// Flush the tab writer to output the formatted table
 	w.Flush()
-
-	utils.Return()
 }
 
 func DeleteAccount() {
@@ -113,5 +111,4 @@ func DeleteAccount() {
 	} else {
 		fmt.Println("No accounts found !!")
 	}
-	utils.Return()
 }

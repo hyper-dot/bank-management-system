@@ -31,7 +31,6 @@ func SearchByPhone() {
 		fmt.Println("---------------------------------------")
 	}
 
-	utils.Return()
 }
 
 func SearchByName() {
@@ -81,8 +80,6 @@ func SearchByName() {
 	if !found {
 		fmt.Println("No account found !!")
 	}
-	// Prompts user to press 0 for return
-	utils.Return()
 }
 
 func SearchAccountbyAccNo() {
@@ -104,6 +101,4 @@ func SearchAccountbyAccNo() {
 		fmt.Printf("Balance     : %v\n", account.Balance)
 		fmt.Println("---------------------------------------")
 	}
-
-	utils.Return()
 }

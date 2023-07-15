@@ -39,7 +39,7 @@ func Deposit() {
 		updateResult.ModifiedCount,
 	)
 	fmt.Println("Amount Added Successfully !!")
-	utils.Return()
+
 }
 
 func TransferMoney() {
@@ -86,14 +86,13 @@ func TransferMoney() {
 	updateSender := bson.D{{Key: "$set", Value: bson.D{{Key: "balance", Value: senderNewAmount}}}}
 
 	if _, err := utils.Collection.UpdateOne(ctx, receiverFilter, updateReceiver); err != nil {
-		utils.Return()
+		fmt.Println("receiver's account updation failed!!")
+		return
 	}
 	if _, err := utils.Collection.UpdateOne(ctx, senderFilter, updateSender); err != nil {
 		fmt.Println("sender's account updation failed!!")
 		return
 	}
-
 	// Print success message and return to menu
-	fmt.Println("receiver's account updation failed!!")
-	return
+	fmt.Println("Account Updated Succesfully!!!")
 }

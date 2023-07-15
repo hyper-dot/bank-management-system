@@ -20,17 +20,6 @@ func ClearScreen() {
 }
 
 // Returns to Menu
-func Return() {
-	fmt.Printf("Please Press 0 and Hit Enter to Return: ")
-	var choice string
-	fmt.Scan(&choice)
-	if choice == "0" {
-		return
-	} else {
-		fmt.Printf("Invalid Input !! Please Press 0 and Hit Enter to Return: ")
-		Return()
-	}
-}
 
 func Divider() {
 	fmt.Println("---------------------------------------")
