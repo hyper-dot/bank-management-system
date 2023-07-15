@@ -1,14 +1,14 @@
 package main
 
 import (
-	"bank/menus"
+	menu "bank/menus"
 	"bank/utils"
 )
 
 func main() {
 	for {
-		utils.DisplayMenu(menus.MainMenu)
+		utils.DisplayMenu(menu.MainMenu)
 		choice := utils.GetInput()
-		menus.ProcessMainMenuChoice(choice)
+		menu.HandleMainMenu(choice)
 	}
 }

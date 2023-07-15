@@ -1,7 +1,6 @@
-package menus
+package menu
 
 import (
-	"bank/controller"
 	"bank/utils"
 	"fmt"
 )
@@ -14,20 +13,21 @@ var searchAccountMenu = []string{
 }
 
 func SearchAccount() {
+	utils.DisplayMenu(searchAccountMenu)
 	for {
-		utils.DisplayMenu(searchAccountMenu)
 		choice := utils.GetInput()
 		switch choice {
 		case "1":
-			controller.SearchByPhone()
+			SearchByPhone()
 		case "2":
-			controller.SearchAccountbyAccNo()
+			SearchAccountbyAccNo()
 		case "3":
-			controller.SearchByName()
+			SearchByName()
 		case "0":
+			utils.DisplayMenu(AccountManagementMenu)
 			return
 		default:
-			fmt.Println("invalid Options")
+			fmt.Println("Invalid Options")
 		}
 	}
 }

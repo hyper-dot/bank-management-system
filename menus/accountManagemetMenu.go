@@ -1,7 +1,6 @@
-package menus
+package menu
 
 import (
-	"bank/controller"
 	"bank/utils"
 	"fmt"
 )
@@ -20,17 +19,17 @@ func ShowAccManagemntOpts() {
 		choice := utils.GetInput()
 		switch choice {
 		case "1":
-			controller.CreateAccount()
+			CreateAccount()
 		case "2":
-			controller.ShowAllAccount()
+			ShowAllAccount()
 		case "3":
 			SearchAccount()
 		case "4":
-			controller.DeleteAccount()
+			DeleteAccount()
 		case "0":
 			return
 		default:
-			fmt.Println("Invalid Options!! Please Select a valid option: ")
+			fmt.Printf("Please Enter Valid Option : ")
 		}
 	}
 }

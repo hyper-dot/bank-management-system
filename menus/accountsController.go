@@ -1,4 +1,4 @@
-package controller
+package menu
 
 import (
 	"bank/model"
@@ -49,10 +49,13 @@ func CreateAccount() {
 
 	// Message
 	fmt.Println("Account Created Succesfully !!")
+
+	// Returns to parent menu
+	utils.ReturnTo(ShowAccManagemntOpts)
+
 }
 
 func ShowAllAccount() {
-
 	// Retrieve all accounts from MongoDB
 	cursor, err := utils.Collection.Find(context.Background(), bson.D{})
 	if err != nil {
@@ -92,6 +95,8 @@ func ShowAllAccount() {
 
 	// Flush the tab writer to output the formatted table
 	w.Flush()
+	// returns to parent menu
+	utils.ReturnTo(ShowAccManagemntOpts)
 }
 
 func DeleteAccount() {
@@ -106,9 +111,11 @@ func DeleteAccount() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if deleteResult.DeletedCount > 1 {
+	if deleteResult.DeletedCount > 0 {
 		fmt.Printf("Found %v Account(s) and Deleted Succesfully!! \n", deleteResult.DeletedCount)
 	} else {
 		fmt.Println("No accounts found !!")
 	}
+	// returns to parent menu
+	utils.ReturnTo(ShowAccManagemntOpts)
 }

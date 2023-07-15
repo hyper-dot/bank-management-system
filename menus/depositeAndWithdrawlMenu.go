@@ -1,7 +1,6 @@
-package menus
+package menu
 
 import (
-	"bank/controller"
 	"bank/utils"
 	"fmt"
 )
@@ -19,10 +18,10 @@ func ShowDepositeAndWithdrawlMenu() {
 		choice := utils.GetInput()
 		switch choice {
 		case "1":
-			controller.Deposit()
+			Deposit()
 		case "2":
 		case "3":
-			controller.TransferMoney()
+			TransferMoney()
 		case "0":
 			return
 		default:

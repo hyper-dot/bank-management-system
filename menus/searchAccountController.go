@@ -1,12 +1,13 @@
-package controller
+package menu
 
 import (
 	"bank/model"
 	"bank/utils"
 	"context"
 	"fmt"
-	"go.mongodb.org/mongo-driver/bson"
 	"log"
+
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 // Account Management Handler
@@ -30,7 +31,8 @@ func SearchByPhone() {
 		fmt.Printf("Balance     : %v\n", account.Balance)
 		fmt.Println("---------------------------------------")
 	}
-
+	// Returns to parent function
+	utils.ReturnTo(SearchAccount)
 }
 
 func SearchByName() {
@@ -80,6 +82,9 @@ func SearchByName() {
 	if !found {
 		fmt.Println("No account found !!")
 	}
+
+	// Returns to parent function
+	utils.ReturnTo(SearchAccount)
 }
 
 func SearchAccountbyAccNo() {
@@ -101,4 +106,7 @@ func SearchAccountbyAccNo() {
 		fmt.Printf("Balance     : %v\n", account.Balance)
 		fmt.Println("---------------------------------------")
 	}
+
+	// Returns to parent function
+	utils.ReturnTo(SearchAccount)
 }

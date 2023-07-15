@@ -1,4 +1,4 @@
-package controller
+package menu
 
 import (
 	"bank/model"
@@ -40,6 +40,8 @@ func Deposit() {
 	)
 	fmt.Println("Amount Added Successfully !!")
 
+	// Returns to Parent Menu
+	utils.ReturnTo(ShowDepositeAndWithdrawlMenu)
 }
 
 func TransferMoney() {
@@ -95,4 +97,7 @@ func TransferMoney() {
 	}
 	// Print success message and return to menu
 	fmt.Println("Account Updated Succesfully!!!")
+
+	// Returns to Parent Menu
+	utils.ReturnTo(ShowDepositeAndWithdrawlMenu)
 }

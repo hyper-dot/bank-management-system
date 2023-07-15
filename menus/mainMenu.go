@@ -1,4 +1,4 @@
-package menus
+package menu
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ var MainMenu = []string{
 	"0. Exit",
 }
 
-func ProcessMainMenuChoice(choice string) {
+func HandleMainMenu(choice string) {
 	switch choice {
 	case "1":
 		ShowAccManagemntOpts()

@@ -20,6 +20,17 @@ func ClearScreen() {
 }
 
 // Returns to Menu
+func ReturnTo(ParentMenu func()) {
+	fmt.Printf("Please press 0 hit enter to return: ")
+	choice := GetInput()
+
+	for choice != "0" {
+		fmt.Printf("Please press 0 hit enter to return: ")
+		fmt.Scan(&choice)
+	}
+	ParentMenu()
+	return
+}
 
 func Divider() {
 	fmt.Println("---------------------------------------")
